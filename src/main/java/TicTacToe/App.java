@@ -9,6 +9,12 @@ public class App
         System.out.println( "Hello World!" );
         Gameboard myBoard = new Gameboard();
         myBoard.printBoard();
-        System.out.println(myBoard.isWinner());
+        myBoard.makeMove('x', "a1");
+        myBoard.makeMove('x', "b1");
+        myBoard.makeMove('x', "c1");
+        myBoard.printBoard();
+        myBoard.makeMove('o', "a1");
+        myBoard.printBoard();
+        myBoard.isWinner();
     }
 }

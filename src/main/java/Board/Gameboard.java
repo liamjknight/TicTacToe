@@ -18,13 +18,35 @@ public class Gameboard {
 	}
 	
 	//methods
-	public void makeMove(char player, String quardinent) {//change this to check if spot has been already selected, maybe switch statment
-		if(quardinent.contains("a")) {
-			this.a[Integer.parseInt(quardinent.substring(1))] = player;
+	public void makeMove(char player, String quardinent) {
+		boolean worked = false;//used to see if user picked a free or used spot
+		if(quardinent.contains("a")) {//finds row
+			if(this.a[Integer.parseInt(quardinent.substring(1))].equals('-')) {//checks if spot has been picked
+				this.a[Integer.parseInt(quardinent.substring(1))] = player;
+				worked = !worked;
+			}else {
+				System.out.println("The space you chose is already taken.");
+			}
 		}else if(quardinent.contains("b")) {
-			this.b[Integer.parseInt(quardinent.substring(1))] = player;
+			if(this.b[Integer.parseInt(quardinent.substring(1))].equals('-')) {
+				this.b[Integer.parseInt(quardinent.substring(1))] = player;
+				worked = !worked;
+			}else {
+				System.out.println("The space you chose is already taken.");
+			}
 		}else if(quardinent.contains("c")) {
-			this.c[Integer.parseInt(quardinent.substring(1))] = player;
+			if(this.c[Integer.parseInt(quardinent.substring(1))].equals('-')) {
+				this.c[Integer.parseInt(quardinent.substring(1))] = player;
+				worked = !worked;
+			}else {
+				System.out.println("The space you chose is already taken.");
+			}
+		}
+		if(worked) {
+			//nextTurn
+		}else {
+			System.out.println("You picked a spot already used, try again!");
+			//tryAgain
 		}
 	}
 	
@@ -37,7 +59,7 @@ public class Gameboard {
 	}
 	
 	
-	//methods to check if there be a winner or no
+	//methods to check if there is a winner
 	public boolean isWinner() {
 		Character winningPiece = '-';
 		if(checkRows().get(true)!=null) {
@@ -52,12 +74,12 @@ public class Gameboard {
 			return false;
 			//go to next turn
 		}else {
-			System.out.printf("CONGRATS %s!\n YOU WON!", winningPiece);
+			System.out.printf("CONGRATS %s!\n YOU WON!\n", winningPiece);
 			return true;
 			//add option to restart game or exit app
 		}
 	}
-	private Map<Boolean, Character> checkRows() {
+	private Map<Boolean, Character> checkRows() {//are there any winning rows?
 		Map<Boolean, Character> result = new HashMap<Boolean, Character>();
 		if(!a[0].equals('-')&&a[0].equals(a[1])&&a[1].equals(a[2])) {
 			result.put(true, a[0]);
@@ -71,7 +93,7 @@ public class Gameboard {
 		}
 		return result;
 	}
-	private Map<Boolean, Character> checkColumns() {
+	private Map<Boolean, Character> checkColumns() {//are there any winning columns?
 		Map<Boolean, Character> result = new HashMap<Boolean, Character>();
 		if(!a[0].equals('-')&&a[0].equals(b[0])&&b[0].equals(c[0])) {
 			result.put(true, a[0]);
@@ -85,7 +107,7 @@ public class Gameboard {
 		}
 		return result;
 	}
-	private Map<Boolean, Character> checkDiagonals() {
+	private Map<Boolean, Character> checkDiagonals() {//are there any winning diagonals?
 		Map<Boolean, Character> result = new HashMap<Boolean, Character>();
 		if(!a[0].equals('-')&&a[0].equals(b[1])&&b[1].equals(c[2])){
 			result.put(true, a[0]);
@@ -95,31 +117,5 @@ public class Gameboard {
 			result.put(false, null);
 		}
 		return result;
-	}
-	
-	
-	//Getters/setters
-	public Character[] getA() {
-		return a;
-	}
-
-	public void setA(Character[] a) {
-		this.a = a;
-	}
-
-	public Character[] getB() {
-		return b;
-	}
-
-	public void setB(Character[] b) {
-		this.b = b;
-	}
-
-	public Character[] getC() {
-		return c;
-	}
-
-	public void setC(Character[] c) {
-		this.c = c;
 	}
 }
