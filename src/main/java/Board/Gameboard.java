@@ -2,6 +2,7 @@ package Board;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 
 
@@ -18,36 +19,35 @@ public class Gameboard {
 	}
 	
 	//methods
-	public void makeMove(char player, String quardinent) {
+	public void makeMove(char player, String move) {
 		boolean worked = false;//used to see if user picked a free or used spot
-		if(quardinent.contains("a")) {//finds row
-			if(this.a[Integer.parseInt(quardinent.substring(1))].equals('-')) {//checks if spot has been picked
-				this.a[Integer.parseInt(quardinent.substring(1))] = player;
+		if(move.contains("a")) {//finds row
+			if(this.a[Integer.parseInt(move.substring(1))].equals('-')) {//checks if spot has been picked
+				this.a[Integer.parseInt(move.substring(1))] = player;
 				worked = !worked;
 			}else {
 				System.out.println("The space you chose is already taken.");
 			}
-		}else if(quardinent.contains("b")) {
-			if(this.b[Integer.parseInt(quardinent.substring(1))].equals('-')) {
-				this.b[Integer.parseInt(quardinent.substring(1))] = player;
+		}else if(move.contains("b")) {
+			if(this.b[Integer.parseInt(move.substring(1))].equals('-')) {
+				this.b[Integer.parseInt(move.substring(1))] = player;
 				worked = !worked;
 			}else {
 				System.out.println("The space you chose is already taken.");
 			}
-		}else if(quardinent.contains("c")) {
-			if(this.c[Integer.parseInt(quardinent.substring(1))].equals('-')) {
-				this.c[Integer.parseInt(quardinent.substring(1))] = player;
+		}else if(move.contains("c")) {
+			if(this.c[Integer.parseInt(move.substring(1))].equals('-')) {
+				this.c[Integer.parseInt(move.substring(1))] = player;
 				worked = !worked;
 			}else {
 				System.out.println("The space you chose is already taken.");
 			}
 		}
-		if(worked) {
-			//nextTurn
-		}else {
+		if(!worked) {
 			System.out.println("You picked a spot already used, try again!");
-			//tryAgain
+			chooseMove(player);
 		}
+		
 	}
 	
 	public void printBoard() {
@@ -117,5 +117,19 @@ public class Gameboard {
 			result.put(false, null);
 		}
 		return result;
+	}
+	
+	public boolean chooseMove(char player) {
+		boolean worked = false;
+		Scanner input = new Scanner(System.in);
+		System.out.println("It's" + player + "'s turn, make your move!");
+		String move = input.nextLine();
+		input.close();
+		if(move.length()==2)
+			worked = !worked;
+		
+		makeMove(player, move);
+		
+		return worked;
 	}
 }

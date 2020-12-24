@@ -25,9 +25,14 @@ public  class Player {
 	
 	
 	//constructors
+	public Player(String playerName) {
+		this.playerName = playerName;
+		isTurn = false;
+	}
 	public Player(String playerName, boolean isTurn, char playerPiece) {
 		this.isTurn = false;
 		this.playerName = playerName;
+		this.playerPiece = playerPiece;
 	}
 	
 	//methods
