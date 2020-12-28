@@ -44,7 +44,7 @@ public class Gameboard {
 			}
 		}
 		if(!worked) {
-			System.out.println("You picked a spot already used, try again!");
+			System.out.println("Try Again!");
 			chooseMove(player);
 		}
 		
@@ -121,15 +121,15 @@ public class Gameboard {
 	
 	public boolean chooseMove(char player) {
 		boolean worked = false;
+		System.out.println("It's " + player + "'s turn, make your move!");
 		Scanner input = new Scanner(System.in);
-		System.out.println("It's" + player + "'s turn, make your move!");
 		String move = input.nextLine();
-		input.close();
 		if(move.length()==2)
 			worked = !worked;
 		
 		makeMove(player, move);
-		
+
+		input.close();
 		return worked;
 	}
 }
