@@ -120,10 +120,15 @@ public class Gameboard {
 	}
 	
 	public boolean chooseMove(char player) {
+		Scanner input = new Scanner(System.in);
 		boolean worked = false;
 		System.out.println("It's " + player + "'s turn, make your move!");
-		Scanner input = new Scanner(System.in);
-		String move = input.nextLine();
+		
+		String move = "";
+		while(input.hasNextLine()) {
+			move = input.nextLine();
+		}
+		
 		if(move.length()==2)
 			worked = !worked;
 		
