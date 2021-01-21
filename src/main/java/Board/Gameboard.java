@@ -47,7 +47,7 @@ public class Gameboard {
 			System.out.println("Try Again!");
 			chooseMove(player);
 		}
-		
+		printBoard();
 	}
 	
 	public void printBoard() {
@@ -125,16 +125,18 @@ public class Gameboard {
 		System.out.println("It's " + player + "'s turn, make your move!");
 		
 		String move = "";
-		while(input.hasNextLine()) {
-			move = input.nextLine();
-		}
+		
+		move = input.nextLine();
 		
 		if(move.length()==2)
 			worked = !worked;
 		
-		makeMove(player, move);
-
-		input.close();
+		if(worked) {
+			makeMove(player, move);
+		}else {
+			chooseMove(player);
+		}
+		
 		return worked;
 	}
 }

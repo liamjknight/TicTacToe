@@ -2,22 +2,15 @@ package Player;
 
 public  class Player {
 	//variables
-	private boolean isTurn;
 	private String playerName;
-	private char playerPiece;
+	private Character playerPiece;
 	
 	//getters/setters
-	public void setPlayerPiece(char playerPiece) {
+	public void setPlayerPiece(Character playerPiece) {
 		this.playerPiece = playerPiece;
 	}
-	public char getPlayerPiece() {
+	public Character getPlayerPiece() {
 		return playerPiece;
-	}
-	public void setTurn() {
-		this.isTurn = !this.isTurn;
-	}
-	public boolean getTurn() {
-		return this.isTurn;
 	}
 	public String getPlayerName() {
 		return playerName;
@@ -27,10 +20,8 @@ public  class Player {
 	//constructors
 	public Player(String playerName) {
 		this.playerName = playerName;
-		isTurn = false;
 	}
-	public Player(String playerName, boolean isTurn, char playerPiece) {
-		this.isTurn = false;
+	public Player(String playerName, boolean isTurn, Character playerPiece) {
 		this.playerName = playerName;
 		this.playerPiece = playerPiece;
 	}
